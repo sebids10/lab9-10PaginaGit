@@ -15,39 +15,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
  
-<script>
-   function setCookie(name, value) {
-    var cookieString = name + "=" + encodeURIComponent(value) + "; path=/";
-    document.cookie = cookieString;
-    }
- 
-    function getCookie(name) {
-    var nameEQ = name + "=";
-    var cookies = document.cookie.split(';');
-    for (var i = 0; i < cookies.length; i++) {
-        var c = cookies[i].trim();
-        if (c.indexOf(nameEQ) === 0) {
-            return decodeURIComponent(c.substring(nameEQ.length, c.length));
-        }
-    }
-    return null;
-    }
-    function deleteCookie(name) {
-    document.cookie = name + "=; Max-Age=0; path=/";
-}
- 
- 
-</script>
- 
+<script> document.cookie = "session=test GDPR"; document.cookie = "favorite_task=collect Data"; function alertCookie() { alert(document.cookie); } </script>  
 </head>
-<body>
-    <header>
-        <h1>Modificare cookie-uri lab 9-10</h1>
-        <p>Mangementul datelor cu caracter personal</p>
-        <button type="button" class="btn btn-primary" onclick="setCookie('user', 'My first cookie')">Set Cookie</button>
-        <button type="button" class="btn btn-secondary" onclick="alert(getCookie('user'))">Show Cookie</button>
-        <button type="button" class="btn btn-secondary" onclick="deleteCookie('user')">Delete Cookie</button>
- 
-    </header>  
-</body>
+<body> Bine ai venit la lab <button onclick="alertCookie()">Show cookies</button> </body> 
 </html>
