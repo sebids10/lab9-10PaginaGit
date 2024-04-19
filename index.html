@@ -3,19 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic HTML Template</title>
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css">
- 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap-theme.min.css">
- 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
- 
-<script> document.cookie = "session=test GDPR"; document.cookie = "favorite_task=collect Data"; function alertCookie() { alert(document.cookie); } </script>  
+    <title>Cookie Handler</title>
 </head>
-<body> Bine ai venit la lab <button onclick="alertCookie()">Show cookies</button> </body> 
+<body>
+    <h1>Cookie Handler</h1>
+    <div id="cookies"></div>
+
+    <button onclick="adaugaCookie()">Adaugă Cookie</button>
+    <button onclick="stergeCookie()">Șterge Cookie</button>
+
+    <script>
+        // Funcție pentru afișarea, adăugarea și ștergerea cookie-urilor
+        function afiseazaCookie() {
+            var cookies = document.cookie.split(';');
+            var cookieText = "<h2>Cookie-uri existente:</h2>";
+            if (cookies.length === 0 || (cookies.length === 1 && cookies[0].trim() === "")) {
+                cookieText += "<p>Nu există cookie-uri disponibile.</p>";
+            } else {
+                cookies.forEach(function(cookie) {
+                    cookieText += "<p>" + cookie.trim() + "</p>";
+                });
+            }
+            document.getElementById('cookies').innerHTML = cookieText;
+        }
+
+        // Funcție pentru adăugarea unui cookie nou
+        function adaugaCookie() {
+            var nume = prompt("Introduceți numele cookie-ului:");
+            var valoare = prompt("Introduceți valoarea cookie-ului:");
+
+            if (nume !== null && valoare !== null) {
+                document.cookie = nume + "=" + valoare + "; max-age=86400"; // Expiră în 24 de ore (valoare exprimată în secunde)
+                afiseazaCookie();
+            }
+        }
+
+        // Funcție pentru ștergerea unui cookie existent
+        function stergeCookie() {
+            var nume = prompt("Introduceți numele cookie-ului pe care doriți să-l ștergeți:");
+            if (nume !== null) {
+                document.cookie = nume + "=; max-age=0";
+                afiseazaCookie();
+            }
+        }
+
+        // Afișează cookie-urile la încărcarea paginii
+        window.onload = function() {
+            afiseazaCookie();
+        };
+    </script>
+</body>
 </html>
