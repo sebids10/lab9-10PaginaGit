@@ -11,8 +11,8 @@
 
     <button onclick="adaugaCookie()">Adaugă Cookie</button>
     <button onclick="stergeCookie()">Șterge Cookie</button>
-    <button onclick="resetOnce()">Reset only once cookie</button>
-    <button onclick="checkACookieExists()">Check a cookie exists</button>
+    <button onclick="resetCookie()">Reset only once cookie</button>
+    <button onclick="checkCookieExists()">Check a cookie exists</button>
     <button onclick="checkCookieHasASpecificValue()">
   	Check reader have value 1
 	</button>
@@ -40,26 +40,22 @@
 	}
 	document.cookie = "reader=1; SameSite=None; Secure";
 
-	function checkACookieExists() {
-  	if (
-    document.cookie.split(";").some((item) => item.trim().startsWith("reader="))
-  	) {
-    const output = document.getElementById("a-cookie-existence");
-    output.textContent = '> The cookie "reader" exists';
-  	}
-	}
-	function resetOnce() 
-	{
-  	// Note that we are setting `SameSite=None;` in this example because the example
-  	// needs to work cross-origin.
-  	// It is more common not to set the `SameSite` attribute, which results in the default,
-  	// and more secure, value of `SameSite=Lax;`
-  	document.cookie =
-    		"doSomethingOnlyOnce=; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure";
-
-  	const output = document.getElementById("reset-once");
-  	output.textContent = "> Reset!";
-	}
+	function checkCookieExists(cookieName) {
+   	 if (document.cookie.split(";").some((item) => item.trim().startsWith(cookieName + "="))) {
+        alert('Cookie-ul "' + cookieName + '" există!');
+    		} else {
+        alert('Cookie-ul "' + cookieName + '" nu există!');
+   		 }
+		}
+	function resetCookie(cookieName) {
+    document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    const output = document.getElementById("reset-once");
+    if (checkCookieExists(cookieName)) {
+        alert('Cookie-ul "' + cookieName + '" nu a putut fi resetat!');
+    } else {
+        alert('Cookie-ul "' + cookieName + '" a fost resetat cu succes!');
+    }
+}
 
 	
         // Funcție pentru afișarea, adăugarea și ștergerea cookie-urilor
