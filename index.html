@@ -14,7 +14,7 @@
     <button onclick="resetOnce()">Reset only once cookie</button>
     <button onclick="checkACookieExists()">Check a cookie exists</button>
     <button onclick="checkCookieHasASpecificValue()">
-  	Check that a cookie has a specific value
+  	Check reader have value 1
 	</button>
 
 	<button onclick="clearASpecificValueOfTheCookie()">Clear specified value</button>
@@ -23,7 +23,9 @@
  	 <code id="a-specific-value-of-the-cookie"></code>
 	</div>
 
-
+<div>
+  <code id="cookies"></code>
+</div>
     <script>
 	function checkCookieHasASpecificValue() {
   	if (document.cookie.split(";").some((item) => item.includes("reader=1"))) {
@@ -33,13 +35,13 @@
 	}
 
 	function clearASpecificValueOfTheCookie() {
-  const output = document.getElementById("a-specific-value-of-the-cookie");
-  output.textContent = "";
+  	const output = document.getElementById("a-specific-value-of-the-cookie");
+  	output.textContent = "";
 	}
 	document.cookie = "reader=1; SameSite=None; Secure";
 
 	function checkACookieExists() {
-  if (
+  	if (
     document.cookie.split(";").some((item) => item.trim().startsWith("reader="))
   	) {
     const output = document.getElementById("a-cookie-existence");
