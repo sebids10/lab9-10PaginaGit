@@ -11,8 +11,8 @@
 
     <button onclick="adaugaCookie()">Adaugă Cookie</button>
     <button onclick="stergeCookie()">Șterge Cookie</button>
-    <button onclick="resetCookie()">Reset only once cookie</button>
-    <button onclick="checkCookieExists()">Check a cookie exists</button>
+    <button onclick="resetCookie()">Reset cookie</button>
+    <button onclick="verificaCookie()">Check a cookie exists</button>
     <button onclick="checkCookieHasASpecificValue()">
   	Check reader have value 1
 	</button>
@@ -40,22 +40,25 @@
 	}
 	document.cookie = "reader=1; SameSite=None; Secure";
 
-	function checkCookieExists(cookieName) {
-   	 if (document.cookie.split(";").some((item) => item.trim().startsWith(cookieName + "="))) {
-        alert('Cookie-ul "' + cookieName + '" există!');
-    		} else {
-        alert('Cookie-ul "' + cookieName + '" nu există!');
-   		 }
-		}
-	function resetCookie(cookieName) {
-    document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    const output = document.getElementById("reset-once");
-    if (checkCookieExists(cookieName)) {
-        alert('Cookie-ul "' + cookieName + '" nu a putut fi resetat!');
-    } else {
-        alert('Cookie-ul "' + cookieName + '" a fost resetat cu succes!');
-    }
-}
+	function verificaCookie() {
+    	var nume = prompt("Introduceți numele cookie-ului pe care doriți să-l verificați:");
+    	if (nume !== null) {
+       	 if (document.cookie.split(';').some((item) => item.trim().startsWith(nume + "="))) {
+            alert('Cookie-ul "' + nume + '" există!');
+        	} else {
+            alert('Cookie-ul "' + nume + '" nu există!');
+       	 }
+    	}
+	}
+
+
+	function reseteazaCookie() {
+    	var nume = prompt("Introduceți numele cookie-ului pe care doriți să-l resetați:");
+   	 if (nume !== null) {
+        document.cookie = nume + "=; max-age=0";
+        afiseazaCookie();
+    		}
+	}
 
 	
         // Funcție pentru afișarea, adăugarea și ștergerea cookie-urilor
